@@ -1,5 +1,5 @@
 import { AppError } from "shared";
-import { createUser, findByEmail } from "../repositories/user.repo";
+import { createUser, findByEmail, findById } from "../repositories/user.repo";
 import { LoginInput, RegisterInput } from "../schemas/auth.schemas";
 import bcrypt from 'bcrypt'
 import { convertToPublicUser } from "../utils/auth.utils";
@@ -37,4 +37,13 @@ export async function login(input: LoginInput) {
         token,
         user: convertToPublicUser(user)
     }
+}
+
+export async function getMe(userId: string) {
+    const user = await findById(userId);
+
+    if(!user) throw new AppError(404, 'User not found');
+    
+    return convertToPublicUser(user)
+
 }
