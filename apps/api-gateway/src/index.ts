@@ -6,6 +6,7 @@ import cors from 'cors'
 import rateLimit from "express-rate-limit";
 import { AppError, errorHandler, httpLogger, logger, successResponse } from "shared";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { gatewayAuth } from "./middleware/gatewayAuth";
 
 
 config({path: resolve(process.cwd(), '.env')});
@@ -33,7 +34,7 @@ app.use('/health', (_req, res) => {
 })
 
 // create proxy starts
-app.use('/auth', createProxyMiddleware({
+app.use('/auth', gatewayAuth, createProxyMiddleware({
     target: AUTH_SERVICE_URL,
     changeOrigin: true,
     pathRewrite: (path) => `/auth${path}`
