@@ -22,7 +22,12 @@ const rbacRules: RbacRule[] = [
         method: 'GET',
         path: '/auth/me',
         roles: ['USER', 'ADMIN']
-    }
+    },
+    {
+        method: 'POST',
+        path: '/tasks',
+        roles: ['USER', 'ADMIN']
+    },
 ]
 
 function matchPath(pattern: string, actual: string): boolean {
@@ -31,7 +36,7 @@ function matchPath(pattern: string, actual: string): boolean {
     }
 
     const patternParts = pattern.split('/')
-    const actualParts = pattern.split('/')
+    const actualParts = actual.split('/')
 
     if(patternParts.length !== actualParts.length){
         return false;
