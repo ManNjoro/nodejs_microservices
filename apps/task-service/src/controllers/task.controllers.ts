@@ -23,3 +23,28 @@ export async function createTask(req: Request, res: Response, next: NextFunction
         next(error)
     }
 }
+
+export async function listTasks(req: Request, res: Response, next: NextFunction){
+    try {
+        const {role, userId} = requireIdentity(req)
+        const tasks = await taskService.listTasks(userId, role)
+
+        successResponse(res, { tasks})
+    } catch (error) {
+        next(error)
+    }
+}
+export async function getSingleTask(req: Request, res: Response, next: NextFunction){
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+}
+export async function deleteSingleTask(req: Request, res: Response, next: NextFunction){
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+}

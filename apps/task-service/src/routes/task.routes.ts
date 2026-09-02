@@ -1,10 +1,11 @@
 import { Router } from 'express'
 import { validateBody } from 'shared';
 import { createTaskSchema } from '../schemas/task.schemas';
-import  * as taskContoller from '../controllers/task.controllers'
+import  * as taskController from '../controllers/task.controllers'
 
 const router = Router()
 
-router.post('/', validateBody(createTaskSchema), taskContoller.createTask)
+router.post('/', validateBody(createTaskSchema), taskController.createTask)
+router.get('/', taskController.listTasks)
 
 export default router;

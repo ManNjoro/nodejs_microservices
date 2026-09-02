@@ -16,7 +16,7 @@ export async function createTask(input: {
   return result.rows[0];
 }
 
-export async function listTickets(input: {
+export async function listTasks(input: {
   userId: string;
   role: string;
 }): Promise<Task[]> {

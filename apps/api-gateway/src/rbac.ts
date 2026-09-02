@@ -28,6 +28,11 @@ const rbacRules: RbacRule[] = [
         path: '/tasks',
         roles: ['USER', 'ADMIN']
     },
+    {
+        method: 'GET',
+        path: '/tasks',
+        roles: ['USER', 'ADMIN']
+    },
 ]
 
 function matchPath(pattern: string, actual: string): boolean {
