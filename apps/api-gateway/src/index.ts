@@ -44,7 +44,7 @@ app.use('/auth', gatewayAuth, createProxyMiddleware({
 app.use('/tasks', gatewayAuth, createProxyMiddleware({
     target: TASK_SERVICE_URL,
     changeOrigin: true,
-    pathRewrite: (path) => `/tasks/${path}`
+    pathRewrite: (path) => `/tasks${path}`
 }))
 
 app.use((_req, res, next) => {

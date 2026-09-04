@@ -7,5 +7,6 @@ const router = Router()
 
 router.post('/', validateBody(createTaskSchema), taskController.createTask)
 router.get('/', taskController.listTasks)
+router.get('/:id', taskController.getSingleTask)
 
 export default router;

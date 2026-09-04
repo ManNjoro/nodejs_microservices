@@ -45,7 +45,7 @@ export async function listTasks(input: {
 export async function findSingleTaskById(id: string): Promise<Task | null> {
   const result = await getPool().query<Task>(
     `
-        SELECT  id, titile, status, created_by, created_at, updated_at
+        SELECT id, title, status, created_by, created_at, updated_at
         FROM tasks
         WHERE id = $1
         `,

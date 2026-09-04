@@ -1,23 +1,37 @@
 import { CreateTaskInput } from "../schemas/task.schemas";
-import * as taskRepo from '../repositories/task.repository'
+import * as taskRepo from "../repositories/task.repository";
 import { convertToPublicTask } from "../utils/task.utils";
 import { AppError } from "shared";
 
-
-export async function createTask(input: CreateTaskInput, userId: string){
-    const newlyCreatedTask = await taskRepo.createTask({
-        title: input.title,
-        createdBy: userId
-    })
-    return convertToPublicTask(newlyCreatedTask)
+export async function createTask(input: CreateTaskInput, userId: string) {
+  const newlyCreatedTask = await taskRepo.createTask({
+    title: input.title,
+    createdBy: userId,
+  });
+  return convertToPublicTask(newlyCreatedTask);
 }
 
 export async function listTasks(userId: string, role: string) {
-    if(!userId || !role){
-        throw new AppError(401, 'Missing user identity');
-    }
+  if (!userId || !role) {
+    throw new AppError(401, "Missing user identity");
+  }
 
-    const tasks = await taskRepo.listTasks({userId, role})
+  const tasks = await taskRepo.listTasks({ userId, role });
 
-    return tasks.map(convertToPublicTask)
+  return tasks.map(convertToPublicTask);
+}
+
+export async function getSingleTask(
+  taskId: string,
+  userId: string,
+  role: string,
+) {
+  const task = await taskRepo.findSingleTaskById(taskId);
+
+  if (!task) throw new AppError(404, "Task not found");
+
+  if (role !== "ADMIN" && task.created_by !== userId)
+    throw new AppError(403, "You are not authorized to view this task");
+
+  return convertToPublicTask(task);
 }
