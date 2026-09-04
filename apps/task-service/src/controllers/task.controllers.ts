@@ -62,6 +62,10 @@ export async function deleteSingleTask(
   next: NextFunction,
 ) {
   try {
+    const {role} = requireIdentity(req);
+    const id = String(req.params.id)
+    const deletedResult = await taskService.deleteSingleTask(id, role)
+    successResponse(res, deletedResult)
   } catch (error) {
     next(error);
   }
