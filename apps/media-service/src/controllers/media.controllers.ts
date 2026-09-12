@@ -28,3 +28,14 @@ export async function uploadAttachment(req: Request, res: Response, next: NextFu
         next(error)
     }
 }
+
+export async function listAttachments(req: Request, res: Response, next:NextFunction){
+    try {
+        const {role, userId} = requireIdentity(req)
+        const taskId = String(req.params.taskId);
+        const extractAttachments = await attachmentService.listAttachments(taskId, userId, role)
+        successResponse(res, { extractAttachments })
+    } catch (error) {
+        next(error)
+    }
+}
