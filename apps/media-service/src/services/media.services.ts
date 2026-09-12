@@ -14,7 +14,7 @@ async function assertTaskAccess(
         throw new AppError(404, 'Task not found')
     }
 
-    if(role !== 'ADMIN' &&task.created_by !== userId){
+    if(role !== 'ADMIN' && task.created_by !== userId){
         throw new AppError(403, 'Forbidden. You are not authorized to perform the operation')
     }
 }

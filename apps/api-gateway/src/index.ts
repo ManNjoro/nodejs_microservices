@@ -62,7 +62,7 @@ app.use('/tasks', gatewayAuth, (req, res, next) => {
     return taskProxy(req, res, next)
 })
 
-app.use((_req, res, next) => {
+app.use((_req, _res, next) => {
     next(new AppError(404, 'Route not found'))
 })
 
