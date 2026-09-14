@@ -11,4 +11,4 @@ export async function createProducer(clientId: string): Promise<Producer> {
 
     logger.info({clientId}, 'kafka producer connected')
     return producer;
-}
+} 
