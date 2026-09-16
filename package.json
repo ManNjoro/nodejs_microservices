@@ -12,6 +12,7 @@
     "dev:auth": "npm run dev -w auth-service",
     "dev:task": "npm run dev -w task-service",
     "dev:media": "npm run dev -w media-service",
+    "dev:workflow": "npm run dev -w workflow-service",
     "dev:gateway": "npm run dev -w api-gateway",
     "db:migrate": "tsx scripts/db-migrate.ts",
     "kafka:up": "docker compose -f docker/docker-compose.yml up -d",
