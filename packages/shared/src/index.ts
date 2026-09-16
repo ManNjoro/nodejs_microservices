@@ -10,5 +10,5 @@ export { signToken, verifyToken } from "./auth/jwt";
 export { requireGatewaySecret } from "./auth/gatewayAuth";
 export { TOPICS } from "./kafka/topics";
 export { createKafkaClient } from "./kafka/client";
-export { createProducer } from "./kafka/producer";
+export { createProducer, publishJson, publishJsonSafe } from "./kafka/producer";
 export { createConsumer } from "./kafka/consumer";

@@ -28,7 +28,7 @@ export async function login(input: LoginInput) {
 
     const validPassword = await bcrypt.compare(input.password, user.password_hash)
 
-    if(!validPassword) throw new AppError(401, 'Invlaid email or password');
+    if(!validPassword) throw new AppError(401, 'Invalid email or password');
 
     const token = signToken({userId: user.id, role: user.role})
 
