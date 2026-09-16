@@ -2,6 +2,7 @@ import { AppError, getPool } from "shared";
 import * as attachmentRepo from '../repositories/media.repositories'
 import { uploadBuffer } from "../utils/storage";
 import { convertToPublicMediaAttachment } from "../utils/media.utils";
+import { publishAttachmentEvent } from "../kafka";
 
 
 async function assertTaskAccess(
@@ -42,6 +43,9 @@ export async function uploadAttachment(input: {
         publicId: uploaded.publicId,
         uploadedBy: input.userId
     })
+
+    // publish an event to notify uploading of an attachment
+    await publishAttachmentEvent(input.taskId, input.userId)
 
     return convertToPublicMediaAttachment(attachment)
 }
