@@ -11,4 +11,4 @@ export { requireGatewaySecret } from "./auth/gatewayAuth";
 export { TOPICS } from "./kafka/topics";
 export { createKafkaClient } from "./kafka/client";
 export { createProducer, publishJson, publishJsonSafe } from "./kafka/producer";
-export { createConsumer } from "./kafka/consumer";
+export { createConsumer, runConsumer } from "./kafka/consumer";
