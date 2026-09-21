@@ -36,7 +36,7 @@ export async function startKafka() {
             try {
                 await handleDomainEvent(JSON.parse(value) as DomainEvent)
             } catch (error) {
-                logger.error({error}, )
+                logger.error({error}, 'workflow consumer failed')
             }
         }
     )
